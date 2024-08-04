@@ -16,3 +16,9 @@ export const logout = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+export const me = catchAsync(async (req, res) => {
+  console.log(req.jwtDecoded);
+  const user = await authService.me(req.jwtDecoded);
+  console.log(req.jwtDecoded);
+  res.status(httpStatus.OK).send(user);
+});

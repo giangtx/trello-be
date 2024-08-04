@@ -13,7 +13,7 @@ export const login = async ({ email, password }) => {
     throw new ApiError(401, "Incorrect password!");
   }
   return generateToken({
-    id: user.id,
+    id: user._id,
     email: user.email,
   });
 }
@@ -35,7 +35,11 @@ export const register = async ({ password, email }) => {
   user.save();
 
   return generateToken({
-    id: user.id,
+    id: user._id,
     email: user.email,
   });
+}
+
+export const me = async (jwtDecoded) => {
+  return jwtDecoded;
 }
